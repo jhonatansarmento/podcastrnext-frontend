@@ -28,9 +28,11 @@ export default function Episode({ episode }: EpisodeProps) {
   return (
     <div className={styles.episode}>
       <div className={styles.thumbnailContainer}>
-        <button type="button" >
-          <img src="/assets/arrow-left.svg" alt="Voltar" />
-        </button>
+        <Link href="/">
+          <button>
+            <img src="/assets/arrow-left.svg" alt="Voltar" />
+          </button>
+        </Link>
         <Image
           width={700}
           height={160}

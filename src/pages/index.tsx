@@ -7,6 +7,8 @@ import { api } from '../services/api';
 import { convertDurationToTimeString } from '../utils/convertDurationsToTimeString';
 
 import styles from './home.module.scss';
+import { useContext } from 'react';
+import { PlayerContext } from '../contexts/PlayerContext';
 
 type Episode = {
   id: string,
@@ -25,10 +27,12 @@ type HomeProps = {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
+  const { play } = useContext(PlayerContext)
+
   return (
     <div className={styles.homepage}>
       <section className={styles.latestEpisodes}>
-        <h2>Ultimos Lancamentos</h2>
+        <h2>Últimos Lançamentos</h2>
 
         <ul>
           {latestEpisodes.map(episode => {
@@ -51,8 +55,8 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   <span>{episode.durationsAsString}</span>
                 </div>
 
-                <button type="button">
-                  <img src="/assets/play-green.svg" alt="Tocar Episodio" />
+                <button type="button" onClick={() => play(episode)} >
+                  <img src="/assets/play-green.svg" alt="Tocar episodio" />
                 </button>
               </li>
             )
